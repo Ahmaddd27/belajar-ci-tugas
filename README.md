@@ -1,88 +1,343 @@
-# Toko Online CodeIgniter 4
+# 🛒 Toko Online - CodeIgniter 4
 
-Proyek ini adalah platform toko online yang dibangun menggunakan [CodeIgniter 4](https://codeigniter.com/). Sistem ini menyediakan beberapa fungsionalitas untuk toko online, termasuk manajemen produk, keranjang belanja, dan sistem transaksi.
+<p align="center">
+  <img src="https://img.shields.io/badge/CodeIgniter-4-red?style=for-the-badge&logo=codeigniter">
+  <img src="https://img.shields.io/badge/PHP-8.x-blue?style=for-the-badge&logo=php">
+  <img src="https://img.shields.io/badge/MySQL-Database-orange?style=for-the-badge&logo=mysql">
+  <img src="https://img.shields.io/badge/Bootstrap-5-purple?style=for-the-badge&logo=bootstrap">
+</p>
 
-## Daftar Isi
+---
 
-- [Fitur](#fitur)
-- [Persyaratan Sistem](#persyaratan-sistem)
-- [Instalasi](#instalasi)
-- [Struktur Proyek](#struktur-proyek)
+# 📌 Deskripsi Project
 
-## Fitur
+**Toko Online** merupakan aplikasi berbasis web yang dikembangkan menggunakan framework **CodeIgniter 4**. Sistem ini memungkinkan pengguna untuk melihat produk, menambahkan produk ke keranjang, melakukan checkout, menghitung ongkos kirim menggunakan **API RajaOngkir**, serta menyimpan transaksi ke database.
 
-- Katalog Produk
-  - Tampilan produk dengan gambar
-  - Pencarian produk
-- Keranjang Belanja
-  - Tambah/hapus produk
-  - Update jumlah produk
-  - Mengosongkan keranjang
-- Sistem Transaksi
-  - Proses checkout
-  - Riwayat transaksi
-- Panel Admin
-  - Manajemen produk (CRUD)
-  - Export data ke PDF
-- Sistem Autentikasi
-  - Login pengguna
-- UI Responsif dengan NiceAdmin template
+Project ini dibuat untuk mempelajari implementasi:
 
-## Persyaratan Sistem
+* Framework CodeIgniter 4
+* Sistem autentikasi
+* CRUD Produk
+* Session Cart
+* Integrasi API eksternal (RajaOngkir)
+* Transaksi dan Detail Transaksi
+* AJAX dan Select2
 
-- PHP >= 8.2
-- Composer
-- Web server (XAMPP)
+---
 
-## Instalasi
+# ✨ Fitur Utama
 
-1. **Clone repository ini**
-   ```bash
-   git clone [URL repository]
-   cd belajar-ci-tugas
-   ```
-2. **Install dependensi**
-   ```bash
-   composer install
-   ```
-3. **Konfigurasi database**
+## 👤 Autentikasi User
 
-   - Start module Apache dan MySQL pada XAMPP
-   - Buat database **db_ci4** di phpmyadmin.
-   - copy file .env dari tutorial https://www.notion.so/april-ns/Codeigniter4-Migration-dan-Seeding-045ffe5f44904e5c88633b2deae724d2
+* Login
+* Logout
+* Session Authentication
+* Filter Auth
 
-4. **Jalankan migrasi database**
-   ```bash
-   php spark migrate
-   ```
-5. **Seeder data**
-   ```bash
-   php spark db:seed ProductSeeder
-   ```
-   ```bash
-   php spark db:seed UserSeeder
-   ```
-6. **Jalankan server**
-   ```bash
-   php spark serve
-   ```
-7. **Akses aplikasi**
-   Buka browser dan akses `http://localhost:8080` untuk melihat aplikasi.
+## 📦 Manajemen Produk
 
-## Struktur Proyek
+* Menampilkan daftar produk
+* Menambahkan produk
+* Mengubah produk
+* Menghapus produk
+* Download data produk
 
-Proyek menggunakan struktur MVC CodeIgniter 4:
+## 🛒 Keranjang Belanja
 
-- app/Controllers - Logika aplikasi dan penanganan request
-  - AuthController.php - Autentikasi pengguna
-  - ProdukController.php - Manajemen produk
-  - TransaksiController.php - Proses transaksi
-- app/Models - Model untuk interaksi database
-  - ProductModel.php - Model produk
-  - UserModel.php - Model pengguna
-- app/Views - Template dan komponen UI
-  - v_home.php - Halaman Utama
-  - v_keranjang.php - Halaman keranjang
-- public/img - Gambar produk dan aset
-- public/NiceAdmin - Template admin
+* Menambahkan produk ke keranjang
+* Mengubah jumlah produk
+* Menghapus produk dari keranjang
+* Mengosongkan keranjang
 
+## 🚚 Checkout dan Pengiriman
+
+* Input alamat pelanggan
+* Pencarian tujuan pengiriman menggunakan Select2
+* Integrasi API RajaOngkir
+* Menampilkan layanan pengiriman
+* Menghitung ongkos kirim otomatis
+* Menghitung total pembayaran
+
+## 💳 Transaksi
+
+* Menyimpan data transaksi
+* Menyimpan detail transaksi
+* Menghitung subtotal
+* Menghitung total akhir
+
+---
+
+# 🏗️ Teknologi yang Digunakan
+
+| Teknologi          | Keterangan              |
+| ------------------ | ----------------------- |
+| PHP                | Bahasa Pemrograman      |
+| CodeIgniter 4      | Framework Backend       |
+| MySQL              | Database                |
+| Bootstrap 5        | User Interface          |
+| jQuery             | Manipulasi DOM          |
+| AJAX               | Komunikasi Asynchronous |
+| Select2            | Dropdown Pencarian      |
+| RajaOngkir API     | Perhitungan Ongkir      |
+| NiceAdmin Template | Dashboard UI            |
+
+---
+
+# 📁 Struktur Project
+
+```bash
+app/
+│
+├── Controllers/
+│   ├── AuthController.php
+│   ├── Home.php
+│   ├── ProdukController.php
+│   ├── TransaksiController.php
+│   └── ProfileController.php
+│
+├── Models/
+│   ├── ProductModel.php
+│   ├── TransactionModel.php
+│   └── TransactionDetailModel.php
+│
+├── Services/
+│   └── RajaOngkirService.php
+│
+├── Views/
+│   ├── v_checkout.php
+│   ├── v_keranjang.php
+│   ├── layout.php
+│   └── components/
+│
+└── Config/
+```
+
+---
+
+# 🔄 Flow Sistem
+
+## 1️⃣ User Login
+
+```text
+User → Login Form → AuthController → Validasi
+→ Session Dibuat → Dashboard
+```
+
+---
+
+## 2️⃣ Menampilkan Produk
+
+```text
+User → Home Page
+→ ProdukController
+→ Mengambil Data Produk
+→ Menampilkan Produk
+```
+
+---
+
+## 3️⃣ Menambahkan Produk ke Keranjang
+
+```text
+User Klik "Tambah ke Keranjang"
+↓
+TransaksiController::cart_add()
+↓
+Data Produk Disimpan ke Session Cart
+↓
+Keranjang Ditampilkan
+```
+
+---
+
+## 4️⃣ Checkout
+
+```text
+User Membuka Halaman Checkout
+↓
+Input Alamat
+↓
+Cari Kelurahan (AJAX + Select2)
+↓
+Request ke RajaOngkir API
+↓
+Menampilkan Daftar Layanan
+↓
+User Memilih Layanan
+↓
+Ongkir Dihitung
+↓
+Total Harga Dihitung
+```
+
+---
+
+## 5️⃣ Proses Pembelian
+
+```text
+User Klik "Buat Pesanan"
+↓
+TransaksiController::buy()
+↓
+Hitung Subtotal
+↓
+Tambah Ongkir
+↓
+Simpan ke Tabel Transaction
+↓
+Simpan Detail Produk
+↓
+Kosongkan Keranjang
+↓
+Redirect ke Dashboard
+```
+
+---
+
+# 🔌 Integrasi API RajaOngkir
+
+Sistem menggunakan API RajaOngkir untuk:
+
+* Mencari tujuan pengiriman
+* Mengambil biaya pengiriman
+* Menampilkan estimasi pengiriman
+
+Contoh Service:
+
+```php
+$service = new RajaOngkirService();
+
+$response = $service->getDestination('Semarang');
+
+$cost = $service->getCost(
+    '64999',
+    '65042',
+    1000,
+    'jne'
+);
+```
+
+---
+
+# 🗄️ Database
+
+## Tabel Product
+
+| Field |
+| ----- |
+| id    |
+| nama  |
+| harga |
+| foto  |
+| stok  |
+
+---
+
+## Tabel Transaction
+
+| Field       |
+| ----------- |
+| id          |
+| username    |
+| alamat      |
+| ongkir      |
+| total_harga |
+| status      |
+
+---
+
+## Tabel Transaction Detail
+
+| Field          |
+| -------------- |
+| id             |
+| transaction_id |
+| product_id     |
+| jumlah         |
+| diskon         |
+| subtotal_harga |
+
+---
+
+# ⚙️ Instalasi
+
+## Clone Repository
+
+```bash
+git clone https://github.com/username/toko-online.git
+```
+
+## Masuk ke Folder
+
+```bash
+cd toko-online
+```
+
+## Install Dependency
+
+```bash
+composer install
+```
+
+## Salin File Environment
+
+```bash
+cp env .env
+```
+
+## Konfigurasi Database
+
+```env
+database.default.hostname = localhost
+database.default.database = toko
+database.default.username = root
+database.default.password =
+database.default.DBDriver = MySQLi
+```
+
+## Konfigurasi RajaOngkir
+
+```env
+RAJAONGKIR_API_KEY=YOUR_API_KEY
+RAJAONGKIR_BASE_URL=https://rajaongkir.komerce.id/api/v1/
+```
+
+## Jalankan Server
+
+```bash
+php spark serve
+```
+
+Akses aplikasi:
+
+```bash
+http://localhost:8080
+```
+
+---
+
+# 📸 Tampilan Aplikasi
+
+* Dashboard
+* Daftar Produk
+* Keranjang Belanja
+* Checkout
+* Profil User
+
+---
+
+# 👨‍💻 Author
+
+**Nama :** Your Name
+
+**Framework :** CodeIgniter 4
+
+**Database :** MySQL
+
+**Tahun :** 2025
+
+---
+
+# 📄 Lisensi
+
+Project ini dibuat untuk tujuan pembelajaran dan pengembangan sistem informasi berbasis web.
